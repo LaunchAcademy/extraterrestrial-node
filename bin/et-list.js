@@ -1,5 +1,5 @@
-const Configuration = require("../src/configuration")
-const Client = require("../src/client")
+const Configuration = require("../src/Configuration")
+const Client = require("../src/Client")
 
 const config = Configuration.loadFromDirectory(process.cwd())
 const { table } = require("table")

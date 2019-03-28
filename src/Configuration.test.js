@@ -1,4 +1,4 @@
-const Configuration = require("./configuration")
+const Configuration = require("./Configuration")
 const path = require("path")
 describe("configuration", () => {
   it("can load from a file", () => {

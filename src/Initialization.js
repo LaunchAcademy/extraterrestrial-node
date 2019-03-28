@@ -1,7 +1,7 @@
 const fs = require("fs")
 const path = require("path")
 const etFileName = ".et"
-const Configuration = require("./configuration")
+const Configuration = require("./Configuration")
 
 class Initialization {
   constructor(paramsToWrite = { userName, token, host }, directory) {
