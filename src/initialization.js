@@ -1,16 +1,16 @@
 const fs = require("fs")
 const path = require("path")
 const etFileName = ".et"
+const Configuration = require("./configuration")
 
 class Initialization {
   constructor(paramsToWrite = { userName, token, host }, directory) {
     this.directory = directory
-    this.paramsToWrite = paramsToWrite
+    this.configuration = new Configuration(paramsToWrite)
   }
 
   write() {
-    const strToWrite = JSON.stringify(this.paramsToWrite)
-    fs.writeFileSync(path.join(this.directory, etFileName), strToWrite)
+    this.configuration.saveToFile(path.join(this.directory, etFileName))
   }
 }
 
