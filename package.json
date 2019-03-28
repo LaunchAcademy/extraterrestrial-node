@@ -1,6 +1,10 @@
 {
   "name": "extraterrestrial",
   "version": "0.0.1",
+  "bin": {
+    "et": "./bin/et",
+    "et-init": "./bin/et-init"
+  },
   "description": "Launch Academy's CLI for getting and submitting challenge work",
   "main": "index.js",
   "repository": "https://github.com/LaunchAcademy/extraterrestrial-node",
@@ -9,6 +13,7 @@
   "private": false,
   "dependencies": {
     "commander": "^2.19.0",
+    "inquirer": "^6.2.2",
     "request": "^2.88.0"
   },
   "devDependencies": {
@@ -18,6 +23,11 @@
     "eslint-plugin-jest": "^22.4.1",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "jest": "^24.5.0",
-    "prettier": "^1.16.4"
+    "prettier": "^1.16.4",
+    "tmp": "^0.1.0"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/jest",
+    "test:dev": "./node_modules/.bin/jest --watch --expand"
   }
 }
