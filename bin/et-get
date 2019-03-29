@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+const cmd = require("commander")
+const Configuration = require("../src/Configuration")
+const LessonRetrieval = require("../src/LessonRetrieval")
+const Chalk = require("chalk")
+
+let slug
+cmd.command("et-get <slug>").action((dir, cmd) => {
+  console.log("GETS HERE")
+  console.log(dir)
+  slug = dir
+})
+
+cmd.parse(process.argv)
+// console.log(slug)
+;(async function() {
+  const config = Configuration.loadFromDirectory(process.cwd())
+  const slug = cmd.args[0]
+  const retrieval = new LessonRetrieval(slug, config)
+  const result = await retrieval.get()
+  if (result) {
+    console.log(Chalk.green(`Lesson "${slug}" downloaded!`))
+  } else {
+    console.log(Chalk.red(`Lesson "${slug}" not found!`))
+  }
+})()

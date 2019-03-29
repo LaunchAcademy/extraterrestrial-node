@@ -35,6 +35,17 @@ class Client {
       return JSON.parse(resp).lessons
     })
   }
+
+  getLesson(slug) {
+    return this.baseRequest
+      .get(`/lessons/${slug}.json`)
+      .then(resp => {
+        return JSON.parse(resp).lesson
+      })
+      .catch(err => {
+        return null
+      })
+  }
 }
 
 module.exports = Client
