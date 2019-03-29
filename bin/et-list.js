@@ -1,29 +1,43 @@
 const Configuration = require("../src/Configuration")
 const Client = require("../src/Client")
+const Chalk = require("chalk")
 
 const config = Configuration.loadFromDirectory(process.cwd())
 const { table } = require("table")
 
 ;(async function() {
   const client = new Client(config)
-  const response = await client.listLessons()
-  const tableConfig = {
-    columns: {
-      0: {
-        width: 30
-      },
-      1: {
-        width: 47
-      },
-      2: {
-        width: 13
+  let response
+  response = client
+    .listLessons()
+    .then(response => {
+      const tableConfig = {
+        columns: {
+          0: {
+            width: 30
+          },
+          1: {
+            width: 47
+          },
+          2: {
+            width: 13
+          }
+        }
       }
-    }
-  }
-  console.log(
-    table(
-      response.map(lesson => [lesson.title, lesson.slug, lesson.type]),
-      tableConfig
-    )
-  )
+      console.log(
+        table(
+          response.map(lesson => [lesson.title, lesson.slug, lesson.type]),
+          tableConfig
+        )
+      )
+    })
+    .catch(error => {
+      if (error.statusCode && error.statusCode === 401) {
+        console.log(
+          Chalk.red(
+            "Authentication failed. Please check your .et configuration"
+          )
+        )
+      }
+    })
 })()
