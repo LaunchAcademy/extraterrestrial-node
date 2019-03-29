@@ -1,0 +1,8 @@
+{
+    "lesson": {
+        "archive_url": "http://example.com/rock-paper-scissors.tar.gz",
+        "body": "body goes here...",
+        "slug": "rock-paper-scissors",
+        "title": "Rock, Paper, Scissors"
+    }
+}

@@ -14,7 +14,9 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "commander": "^2.19.0",
+    "fast-glob": "^2.2.6",
     "inquirer": "^6.2.2",
+    "js-yaml": "^3.13.0",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7",
     "table": "^5.2.3",
