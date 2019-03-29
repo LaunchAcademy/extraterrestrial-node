@@ -1,5 +1,6 @@
 const path = require("path")
 const fs = require("fs")
+const findUp = require("find-up")
 const etFileName = ".et"
 
 class Configuration {
@@ -28,8 +29,18 @@ class Configuration {
     return new Configuration(JSON.parse(contents))
   }
 
+  static recursivelyLoad(wd = null) {
+    const workingDir = wd || process.cwd()
+    const configPath = findUp.sync(etFileName, { cwd: wd })
+    if (configPath) {
+      return Configuration.loadFromFile(configPath)
+    } else {
+      return null
+    }
+  }
+
   static loadFromDirectory(directory) {
-    return this.loadFromFile(path.join(directory, etFileName))
+    return Configuration.loadFromFile(path.join(directory, etFileName))
   }
 }
 

@@ -1,4 +1,5 @@
 const request = require("request-promise-native")
+const fs = require("fs")
 
 class Client {
   constructor(configuration) {
@@ -36,6 +37,14 @@ class Client {
     })
   }
 
+  submitLesson(slug, archivePath) {
+    return this.baseRequest.post(this._submission_path(slug), {
+      formData: {
+        "submission[archive]": fs.createReadStream(archivePath)
+      }
+    })
+  }
+
   getLesson(slug) {
     return this.baseRequest
       .get(`/lessons/${slug}.json`)
@@ -45,6 +54,10 @@ class Client {
       .catch(err => {
         return null
       })
+  }
+
+  _submission_path(slug) {
+    return `/lessons/${slug}/submissions.json`
   }
 }
 

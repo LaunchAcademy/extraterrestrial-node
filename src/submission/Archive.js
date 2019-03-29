@@ -7,6 +7,11 @@ class Archive {
     this.directory = directory
   }
 
+  async hasFilesToSubmit() {
+    const list = await this.getFileList()
+    return list.length > 0
+  }
+
   async save() {
     const filePath = tmp.fileSync({ postfix: ".tar.gz" }).name
     return tar

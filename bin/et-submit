@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+
+const cmd = require("commander")
+const Configuration = require("../src/Configuration")
+const LessonConfiguration = require("../src/LessonConfiguration")
+const Chalk = require("chalk")
+const LessonSubmission = require("../src/submission/LessonSubmission")
+const NoFilesToSubmitError = require("../src/submission/NoFilesToSubmitError")
+
+cmd.command("et-submit")
+
+cmd.parse(process.argv)
+// console.log(slug)
+;(async function() {
+  const lessonConfig = LessonConfiguration.recursivelyLoad(process.cwd())
+  if (lessonConfig) {
+    const config = Configuration.recursivelyLoad(process.cwd())
+    if (config) {
+      const submission = new LessonSubmission(lessonConfig, config)
+      await submission
+        .submit()
+        .then(result => {
+          console.log(Chalk.green("Lesson submitted."))
+        })
+        .catch(error => {
+          if (error instanceof NoFilesToSubmitError) {
+            console.log(Chalk.red("No files to submit."))
+          } else {
+            throw error
+          }
+        })
+    } else {
+      console.log(Chalk.red("Could not find .et configuration file."))
+    }
+  } else {
+    console.log(Chalk.red("Lesson directory not found."))
+  }
+})()
