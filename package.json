@@ -9,7 +9,7 @@
     "et-submit": "./bin/et-submit"
   },
   "files": [
-    "src/*.js",
+    "src/**/*.js",
     "bin/*"
   ],
   "description": "Launch Academy's CLI for getting and submitting challenge work",
@@ -39,6 +39,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "jest": "^24.5.0",
     "prettier": "^1.16.4",
+    "release-it": "^10.3.1",
     "tmp": "^0.1.0"
   },
   "scripts": {
