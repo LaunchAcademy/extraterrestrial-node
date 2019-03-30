@@ -1,4 +1,4 @@
-const Initialization = require("./initialization")
+const Initialization = require("./Initialization")
 const tmp = require("tmp")
 const path = require("path")
 const fs = require("fs")
