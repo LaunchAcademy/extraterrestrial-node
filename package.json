@@ -42,6 +42,7 @@
   },
   "scripts": {
     "test": "node_modules/.bin/jest",
-    "test:dev": "./node_modules/.bin/jest --watch --expand"
+    "test:dev": "./node_modules/.bin/jest --watch --expand",
+    "test:coverage": "./node_modules/.bin/jest --coverage"
   }
 }
