@@ -1,10 +1,17 @@
 #!/usr/bin/env node
 
+const fs = require("fs")
+const path = require("path")
+const json = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "../package.json"))
+)
+
 const cmd = require("commander")
 
 cmd
-  .version("0.1.0")
+  .version(json.version)
   .command("init", "sets up a working directory for Launch challenges")
   .command("list", "lists available lessons")
-  .command("get", "retrieves a lesson")
+  .command("get [slug]", "retrieves a lesson")
+  .command("submit", "submits a lesson")
   .parse(process.argv)
