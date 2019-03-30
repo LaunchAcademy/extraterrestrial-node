@@ -1,6 +1,6 @@
 {
   "name": "extraterrestrial",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "bin": {
     "et": "./bin/et",
     "et-init": "./bin/et-init",
