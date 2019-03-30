@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const Configuration = require("../src/Configuration")
 const Client = require("../src/Client")
 const Chalk = require("chalk")

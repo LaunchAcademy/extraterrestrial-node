@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "bin": {
     "et": "./bin/et",
-    "et-init": "./bin/et-init"
+    "et-init": "./bin/et-init",
+    "et-get": "./bin/et-get",
+    "et-list": "./bin/et-list",
+    "et-submit": "./bin/et-submit"
   },
   "description": "Launch Academy's CLI for getting and submitting challenge work",
   "main": "index.js",
