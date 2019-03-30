@@ -8,6 +8,10 @@
     "et-list": "./bin/et-list",
     "et-submit": "./bin/et-submit"
   },
+  "files": [
+    "src/*.js",
+    "bin/*"
+  ],
   "description": "Launch Academy's CLI for getting and submitting challenge work",
   "main": "index.js",
   "repository": "https://github.com/LaunchAcademy/extraterrestrial-node",
