@@ -2,7 +2,7 @@
 
 const cmd = require("commander")
 const inquirer = require("inquirer")
-const Initialization = require("../src/initialization")
+const Initialization = require("../src/Initialization")
 
 cmd.parse(process.argv)
 
