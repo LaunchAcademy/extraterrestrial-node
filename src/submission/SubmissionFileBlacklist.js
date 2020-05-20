@@ -1,13 +1,12 @@
 const path = require("path")
 const fs = require("fs")
-const findUp = require("find-up")
 
-const gitignoreFileName = ".gitignore"
+const ignoreFileName = ".etignore"
 const defaultBlacklistGlobs = [".lesson.yml", "node_modules/**/*"]
 
 class SubmissionFileBlacklist {
   constructor(directory) {
-    this.ignoreFile = path.join(directory, gitignoreFileName)
+    this.ignoreFile = path.join(directory, ignoreFileName)
     this.directory = directory
   }
 
@@ -21,13 +20,13 @@ class SubmissionFileBlacklist {
   get blacklistGlobs() {
     if (!this._blacklistGlobs) {
       this._blacklistGlobs = defaultBlacklistGlobs.concat(
-        this._processGitIgnoreList()
+        this._processIgnoreFileList()
       )
     }
     return this._blacklistGlobs
   }
 
-  _processGitIgnoreList() {
+  _processIgnoreFileList() {
     const gitFileArray = this.gitIgnoreFileContents.split("\n")
     return gitFileArray.reduce((globs, fileLine) => {
       fileLine = fileLine.trim()

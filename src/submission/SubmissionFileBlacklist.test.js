@@ -18,15 +18,15 @@ describe("SubmissionFileBlacklist", () => {
     expect(globs.includes("node_modules/**/*")).toBe(true)
   })
 
-  it("includes file from .gitignore", () => {
+  it("includes file from ignore file", () => {
     expect(globs.includes("bloated-challenge.md")).toBe(true)
   })
 
-  it("includes directory from .gitignore", () => {
+  it("includes directory from ignore file", () => {
     expect(globs.includes("rando_folder/**/*")).toBe(true)
   })
 
-  it("ignores comment in .gitignore", () => {
+  it("ignores comment in ignore file", () => {
     expect(globs.includes("# Here's a comment")).toBe(false)
   })
 })
