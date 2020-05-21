@@ -8,11 +8,8 @@ describe("Lesson Configuration", () => {
       path.join(__dirname, "../test/fixtures/bloated-challenge")
     )
   })
+
   it("has a title", () => {
     expect(lessonConfig.title).toEqual("Bloated Challenge")
-  })
-
-  it("has an ignore array", () => {
-    expect(lessonConfig.ignore).toBeInstanceOf(Array)
   })
 })

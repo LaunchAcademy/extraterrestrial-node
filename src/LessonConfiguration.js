@@ -28,7 +28,6 @@ class LessonConfiguration {
   }
 
   static recursivelyLoad(wd = null) {
-    const workingDir = wd || process.cwd()
     const ymlFile = findUp.sync(configFileName)
     if (ymlFile) {
       return new LessonConfiguration(path.dirname(ymlFile))
