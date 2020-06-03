@@ -14,7 +14,7 @@ describe("SubmissionFileBlacklist", () => {
   })
 
   it("includes default blacklist globs", async () => {
-    expect(globs.includes(".lesson.yml")).toBe(true)
+    expect(globs.includes("coverage/**/*")).toBe(true)
     expect(globs.includes("node_modules/**/*")).toBe(true)
   })
 
