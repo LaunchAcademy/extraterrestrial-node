@@ -12,7 +12,7 @@ cmd.command("et-submit")
 cmd.parse(process.argv)
 ;(async function() {
   const lessonDirectory = await LessonDirectory.recursivelyLoad()
-  if (lessonDirectory) {
+  if (lessonDirectory.directory) {
     const config = Configuration.recursivelyLoad(process.cwd())
     if (config) {
       const submission = new LessonSubmission(lessonDirectory, config)
