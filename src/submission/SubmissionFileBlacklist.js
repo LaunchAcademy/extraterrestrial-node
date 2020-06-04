@@ -2,7 +2,7 @@ const path = require("path")
 const fs = require("fs")
 
 const ignoreFileName = ".etignore"
-const defaultBlacklistGlobs = [".lesson.yml", "node_modules/**/*"]
+const defaultBlacklistGlobs = ["node_modules/**/*", "coverage/**/*"]
 
 class SubmissionFileBlacklist {
   constructor(directory) {
