@@ -34,20 +34,22 @@ class SubmissionFileBlacklist {
       if (fileLine.startsWith("#") || fileLine.length === 0) {
         return [...globs]
       } else {
+        let fileOrDir
         try {
-          const fileOrDir = fs.statSync(path.join(this.directory, fileLine))
-          // console.log("File exists.");
-
-          if (fileOrDir.isDirectory()) {
-            fileLine = this._formatDirectoryGlob(fileLine)
-          }
-          return [...globs, fileLine]
+         fileOrDir = fs.statSync(path.join(this.directory, fileLine))
         }
         catch (error) {
-          // if a file designated etIgnore does not exist, we will get a "Error: ENOENT: no such file or directory,"
-          // skip this line and go to the next
-          return [...globs]
+          if (error.code === "ENOENT"){
+            return globs
+          } else {
+            throw error
+          }
         }
+        // no error occurred in stating the directory, so add it
+        if (fileOrDir && fileOrDir.isDirectory()) {
+          fileLine = this._formatDirectoryGlob(fileLine)
+        }
+        return [...globs, fileLine]
       }
     }, [])
   }
