@@ -34,8 +34,19 @@ class SubmissionFileBlacklist {
       if (fileLine.startsWith("#") || fileLine.length === 0) {
         return [...globs]
       } else {
-        const fileOrDir = fs.statSync(path.join(this.directory, fileLine))
-        if (fileOrDir.isDirectory()) {
+        let fileOrDir
+        try {
+         fileOrDir = fs.statSync(path.join(this.directory, fileLine))
+        }
+        catch (error) {
+          if (error.code === "ENOENT"){
+            return globs
+          } else {
+            throw error
+          }
+        }
+        // no error occurred in stating the directory, so add it
+        if (fileOrDir && fileOrDir.isDirectory()) {
           fileLine = this._formatDirectoryGlob(fileLine)
         }
         return [...globs, fileLine]
